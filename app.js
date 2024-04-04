@@ -1,20 +1,19 @@
-// app.js
-import express from 'express';
-const app = express();
+const express = require('express')
 
-import { router } from './routes/routes.js';
+const app = express()
+const PORT = 4000
 
-
-
-// Middleware for parsing request body
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Use the routes defined in routes.js
-app.use('/', router);
-
-// Start the server
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+  console.log(`API listening on PORT ${PORT} `)
+})
+
+app.get('/', (req, res) => {
+  res.send('Hey this is my API running 🥳')
+})
+
+app.get('/about', (req, res) => {
+  res.send('This is my about route..... ')
+})
+
+// Export the Express API
+module.exports = app
